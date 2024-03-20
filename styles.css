@@ -2,7 +2,7 @@
 
 :root {
   --clr-primary-white: #ffffff;
-  --clr-secondary-purple: #a401cd;
+  --clr-secondary-purple: #a301cb;
   --clr-secondary-ash: #6d6d6d;
   --clr-sec-premium-ash: #767676;
   --clr-sec-sidebar-ash: #d6d6d6;
@@ -98,18 +98,42 @@ body h1 {
   font-family: var(--font-openSans);
   padding: 50px 0;
 }
+body h1 a {
+  text-decoration: none;
+  color: var(--clr-text-white);
+}
 nav ul li {
   font-weight: 400;
   font-size: 1rem;
-  padding: 25px 0;
+  padding: 25px 0 25px 44px;
   list-style-type: none;
   cursor: pointer;
+  margin: 10px auto;
+  /* transition: all ease-in-out 300ms; */
 }
-
+nav ul li:hover {
+  background-color: hsl(0, 0%, 24%);
+}
+nav ul li.active-nav {
+  background-color: var(--clr-bg-black);
+  color: var(--clr-secondary-purple);
+  border-top-left-radius: 35px;
+  border-bottom-left-radius: 35px;
+  transition: all cubic-bezier(0.445, 0.05, 0.55, 0.95) 300ms;
+}
+nav .bi {
+  margin-right: 14px;
+  width: 20px;
+  height: 20px;
+}
 nav {
   background-color: var(--clr-bg-nav-ash);
   color: var(--clr-sec-sidebar-ash);
   font-family: var(--font-openSans);
+  padding-left: 54px;
+}
+.prefer-color {
+  margin-top: 300px;
 }
 
 /* MIDDLE */
@@ -129,12 +153,17 @@ section .search-song {
   background-color: var(--clr-bg-nav-ash);
   padding: 12px 20px;
   border-radius: 25px;
+  display: flex;
+}
+section .search-song .bi {
+  color: var(--clr-primary-white);
+  cursor: pointer;
 }
 section .search-song input {
   background-color: transparent;
   outline: none;
   border: none;
-  color: #ffffff;
+  color: var(--clr-sec-sidebar-ash);
   font-size: 18px;
   width: 100%;
 }
@@ -182,8 +211,16 @@ section .subscribe button {
   color: var(--clr-text-white);
   font-family: var(--font-openSans);
 }
-.heading-flex span {
+.heading-flex button {
   color: var(--clr-secondary-purple);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all ease-in-out 300ms;
+}
+.heading-flex button:hover {
+  padding: 5px;
+  font-size: 16px;
 }
 .heading-flex h2 {
   font-size: 18px;
@@ -193,20 +230,47 @@ section .subscribe button {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
   gap: 20px;
 }
+.playlist .set-playlist .bi-plus-circle {
+  position: absolute;
+  color: var(--clr-stat-purple);
+  font-size: 60px;
+  right: 30%;
+  top: 10%;
+}
+
 .playlist .set-playlist {
   width: 158px;
   height: 205px;
   border-radius: 10px;
+  padding-bottom: 10px;
+  overflow: hidden;
   background-color: var(--clr-bg-nav-ash);
+  text-align: center;
+  position: relative;
+  cursor: pointer;
+}
+.playlist .set-playlist .bi-play-circle {
+  position: absolute;
+  top: 20%;
+  font-size: 25px;
+  color: var(--clr-text-white);
+  opacity: 0;
+  transition: all ease-in-out 300ms;
+}
+.playlist .set-playlist:hover .bi-play-circle {
+  opacity: 100%;
 }
 .playlist .set-playlist img {
   width: 100%;
   object-fit: contain;
+  position: absolute;
+  top: 0;
 }
 .artist-info {
-  margin-top: 38px;
+  margin-top: 130px;
   font-weight: 500;
   font-size: 14px;
 }
@@ -230,6 +294,16 @@ section .subscribe button {
 }
 .right-area .user-info {
   display: flex;
+  gap: 32px;
+  margin-right: 32px;
+  align-items: center;
+  justify-content: flex-end;
+}
+.user-info button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--clr-primary-white);
 }
 .genre-container {
   display: flex;
@@ -246,6 +320,22 @@ section .subscribe button {
   height: 120px;
   margin-bottom: 10px;
 }
+.genre-container .genre {
+  position: relative;
+  cursor: pointer;
+}
+.genre-container .genre .bi-play-circle {
+  position: absolute;
+  top: 30%;
+  left: 40%;
+  font-size: 25px;
+  color: var(--clr-text-white);
+  opacity: 0;
+  transition: all ease-in-out 300ms;
+}
+.genre-container .genre:hover .bi-play-circle {
+  opacity: 100%;
+}
 .right-area .trending-songs {
   display: flex;
   flex-direction: column;
@@ -260,8 +350,13 @@ section .subscribe button {
 .right-area .trending-songs .music-item {
   display: flex;
   align-items: center;
-
+  cursor: pointer;
   column-gap: 20px;
+}
+.right-area .trending-songs .music-item:hover {
+  background-color: hsl(0, 0%, 24%);
+  border-top-left-radius: 40px;
+  border-bottom-left-radius: 40px;
 }
 .right-area .trending-songs .music-item p {
   display: flex;
@@ -269,4 +364,17 @@ section .subscribe button {
 }
 .right-area .trending-songs .music-item p span {
   color: var(--clr-secondary-ash);
+}
+.justify-playbtn {
+  display: grid;
+  width: 100%;
+  align-content: center;
+  position: relative;
+}
+.trending-songs .justify-playbtn .bi-play-circle-fill {
+  position: absolute;
+  color: var(--clr-text-white);
+  fill: var(--clr-secondary-purple);
+  font-size: 30px;
+  right: 0;
 }
