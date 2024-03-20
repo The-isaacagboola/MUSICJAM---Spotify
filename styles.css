@@ -136,6 +136,20 @@ nav {
   margin-top: 300px;
 }
 
+/* NAV LIGHT MODE */
+nav.light {
+  background-color: var(--clr-secondary-purple);
+  color: white;
+}
+nav.light ul .active-nav {
+  background-color: var(--clr-bg-lightmode-ash);
+}
+nav.light ul li:hover {
+  background-color: rgba(246, 246, 246, 0.219);
+}
+nav.light ul .active-nav:hover {
+  background-color: var(--clr-bg-lightmode-ash);
+}
 /* MIDDLE */
 section .search-song,
 section .user-info {
@@ -221,6 +235,7 @@ section .subscribe button {
 .heading-flex button:hover {
   padding: 5px;
   font-size: 16px;
+  font-weight: 600;
 }
 .heading-flex h2 {
   font-size: 18px;
@@ -286,6 +301,23 @@ section .subscribe button {
   font-weight: 400;
 }
 
+/* MIDDLE AREA LIGHT MODE */
+section.light,
+.middle-area.light {
+  background-color: var(--clr-bg-lightmode-ash);
+  color: var(--clr-text-black);
+}
+.middle-area.light .search-song,
+.middle-area.light .subscribe,
+.middle-area.light .set-playlist {
+  background-color: var(--clr-primary-white);
+  color: var(--clr-text-black);
+}
+.middle-area.light .set-playlist .artist-info p {
+  color: var(--clr-text-black);
+}
+
+/* RIGTH AREA */
 .right-area {
   background-color: var(--clr-bg-black);
   padding-right: 30px;
@@ -352,6 +384,7 @@ section .subscribe button {
   align-items: center;
   cursor: pointer;
   column-gap: 20px;
+  transition: all ease-in-out 200ms;
 }
 .right-area .trending-songs .music-item:hover {
   background-color: hsl(0, 0%, 24%);
@@ -377,4 +410,21 @@ section .subscribe button {
   fill: var(--clr-secondary-purple);
   font-size: 30px;
   right: 0;
+}
+/* RIGHT AREA LIGHT MODE */
+.right-area.light {
+  background-color: var(--clr-bg-lightmode-ash);
+  color: var(--clr-text-black);
+}
+.right-area.light .heading-flex h2,
+.right-area.light .genre-container {
+  color: var(--clr-text-black);
+}
+
+.right-area.light .trending-songs {
+  color: var(--clr-text-black);
+  background-color: var(--clr-primary-white);
+}
+.right-area.light .trending-songs .music-item:hover {
+  background-color: #2626263b;
 }
