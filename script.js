@@ -20,6 +20,6 @@ colorModeButton.addEventListener("click", () => {
     element.classList.toggle("light");
   });
   colorModeButton.textContent === "Light Mode"
-    ? (colorModeButton.textContent = "Dark Mode")
-    : (colorModeButton.textContent = "Light Mode");
+    ? (colorModeButton.innerHTML = `<i class="bi bi-brightness-high">Dark Mode</i>`)
+    : (colorModeButton.innerHTML = `<i class="bi bi-brightness-high">Light Mode</i>`);
 });

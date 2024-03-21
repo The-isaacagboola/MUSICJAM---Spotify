@@ -142,6 +142,12 @@ nav {
   color: inherit;
   cursor: pointer;
 }
+.prefer-color button .bi-brightness-high {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 10px;
+}
 
 /* NAV LIGHT MODE */
 nav.light {
@@ -158,6 +164,7 @@ nav.light ul li:hover {
 nav.light ul .active-nav:hover {
   background-color: var(--clr-bg-lightmode-ash);
 }
+
 /* MIDDLE */
 section .search-song,
 section .user-info {
@@ -264,6 +271,7 @@ section .subscribe button:hover {
   justify-content: space-between;
   position: relative;
   gap: 20px;
+  margin-bottom: 54px;
 }
 .playlist .set-playlist .bi-plus-circle {
   position: absolute;
@@ -321,6 +329,63 @@ section .subscribe button:hover {
 .artist-info .grey-text {
   color: #6d6d6d;
   font-weight: 400;
+}
+
+#player_interface {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  width: 100%;
+  height: 371px;
+  border: 1px solid red;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  position: relative;
+}
+#player_interface .lyrics_div {
+  width: 100%;
+  height: 100%;
+  border: 1px solid purple;
+}
+#player_interface .masterPlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  border: 1px solid blue;
+  position: relative;
+  padding: 0 15px;
+  width: 100%;
+  height: 80px;
+  align-self: flex-end;
+}
+.middle-area.light #player_interface {
+  color: var(--clr-text-black);
+}
+.middle-area #player_interface {
+  color: var(--clr-bg-lightmode-ash);
+}
+.middle-area #player_interface .progressBar {
+  display: flex;
+  justify-content: center;
+  padding: 5px 15px;
+  width: 100%;
+}
+.middle-area #player_interface .progressBar span {
+  padding: 0 10px;
+  font-size: 18px;
+  font-family: var(--font-poppins);
+}
+.middle-area #player_interface .progressBar input {
+  width: 100%;
+  background-color: transparent;
+}
+#player_interface .masterPlay button {
+  color: inherit;
+  border: none;
+  background: none;
+  font-size: 30px;
+  cursor: pointer;
 }
 
 /* MIDDLE AREA LIGHT MODE */
