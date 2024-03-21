@@ -337,7 +337,7 @@ section .subscribe button:hover {
   overflow: hidden;
   width: 100%;
   height: 371px;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   border-radius: 10px;
   margin-bottom: 20px;
   position: relative;
@@ -345,13 +345,26 @@ section .subscribe button:hover {
 #player_interface .lyrics_div {
   width: 100%;
   height: 100%;
-  border: 1px solid purple;
+  padding: 0 50px;
+  font-size: 1rem;
+  text-align: center;
+  font-family: var(--font-poppins);
+  /* border: 1px solid purple; */
+  overflow-y: auto;
+}
+#player_interface .lyrics_div::-webkit-scrollbar {
+  display: flex;
+}
+#player_interface .lyrics_div h3 {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 10px;
 }
 #player_interface .masterPlay {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   position: relative;
   padding: 10px 0;
   width: 100%;
@@ -413,7 +426,7 @@ section .subscribe button:hover {
 #player_interface .masterPlay .wave {
   width: 40px;
   height: 40px;
-  border: 1px solid green;
+  /* border: 1px solid green; */
   padding-bottom: 5px;
   display: flex;
   align-items: flex-end;
@@ -428,12 +441,13 @@ section .subscribe button:hover {
   animation: unset;
 }
 #player_interface .masterPlay .wave span:nth-child(2) {
-  height: 18px;
-  /* animation-delay: 0.4s; */
+  height: 20px;
 }
 #player_interface .masterPlay .wave span:nth-child(3) {
   height: 12px;
-  /* animation-delay: 0.3s; */
+}
+#player_interface .masterPlay .wave span:nth-child(4) {
+  height: 22px;
 }
 /* js class active-wave */
 #player_interface .masterPlay .active-wave span {
