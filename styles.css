@@ -350,7 +350,7 @@ section .subscribe button:hover {
 #player_interface .masterPlay {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   border: 1px solid blue;
   position: relative;
   padding: 10px 0;
@@ -405,13 +405,60 @@ section .subscribe button:hover {
   display: flex;
   flex-direction: column;
   font-family: var(--font-poppins);
+  font-weight: 500;
 }
 .middle-area #player_interface .masterPlay .playing-track-details p span {
   color: var(--clr-secondary-ash);
 }
+#player_interface .masterPlay .wave {
+  width: 40px;
+  height: 40px;
+  border: 1px solid green;
+  padding-bottom: 5px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
 #player_interface .masterPlay .wave span {
+  width: 4px;
+  height: 15px;
+  margin-right: 5px;
+  border-radius: 10px 10px 0px 0px;
+  background: #a301cb;
+  animation: unset;
+}
+#player_interface .masterPlay .wave span:nth-child(2) {
+  height: 18px;
+  /* animation-delay: 0.4s; */
+}
+#player_interface .masterPlay .wave span:nth-child(3) {
+  height: 12px;
+  /* animation-delay: 0.3s; */
+}
+/* js class active-wave */
+#player_interface .masterPlay .active-wave span {
+  animation: wave 0.8s linear infinite;
+}
+#player_interface .masterPlay .active-wave span:nth-child(2) {
+  height: 18px;
+  animation-delay: 0.4s;
+}
+#player_interface .masterPlay .active-wave span:nth-child(3) {
+  height: 12px;
+  animation-delay: 0.3s;
 }
 
+@keyframes wave {
+  0% {
+    height: 18px;
+  }
+  50% {
+    height: 25px;
+  }
+  100% {
+    height: 15px;
+  }
+}
 /* MIDDLE AREA LIGHT MODE */
 section.light,
 .middle-area.light {
