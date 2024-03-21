@@ -350,14 +350,12 @@ section .subscribe button:hover {
 #player_interface .masterPlay {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 20px;
+  justify-content: space-between;
   border: 1px solid blue;
   position: relative;
-  padding: 0 15px;
+  padding: 10px 0;
   width: 100%;
   height: 80px;
-  align-self: flex-end;
 }
 .middle-area.light #player_interface {
   color: var(--clr-text-black);
@@ -368,7 +366,7 @@ section .subscribe button:hover {
 .middle-area #player_interface .progressBar {
   display: flex;
   justify-content: center;
-  padding: 5px 15px;
+  padding: 5px 0;
   width: 100%;
 }
 .middle-area #player_interface .progressBar span {
@@ -386,6 +384,32 @@ section .subscribe button:hover {
   background: none;
   font-size: 30px;
   cursor: pointer;
+}
+.middle-area #player_interface .masterPlay .seek-btns {
+  display: flex;
+  width: 20%;
+  justify-content: space-between;
+  justify-self: center;
+}
+.middle-area #player_interface .masterPlay .playing-track-details {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.middle-area #player_interface .masterPlay .playing-track-details img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+}
+.middle-area #player_interface .masterPlay .playing-track-details p {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-poppins);
+}
+.middle-area #player_interface .masterPlay .playing-track-details p span {
+  color: var(--clr-secondary-ash);
+}
+#player_interface .masterPlay .wave span {
 }
 
 /* MIDDLE AREA LIGHT MODE */
