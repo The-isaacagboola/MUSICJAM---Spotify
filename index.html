@@ -20,23 +20,37 @@
         <a href="/"> <i class="bi bi-music-player-fill"></i>MUSICJAM</a>
       </h1>
       <ul>
-        <li class="active-nav"><i class="bi bi-columns-gap"></i>Dashboard</li>
-        <li><i class="bi bi-person-circle"></i>Overview</li>
-        <li><i class="bi bi-broadcast"></i>Radio</li>
-        <li><i class="bi bi-chat-square-text"></i>Messages</li>
-        <li><i class="bi bi-music-note-beamed"></i>My Music</li>
-        <li><i class="bi bi-heart"></i>Favorites</li>
-        <li><i class="bi bi-question-circle"></i>Help</li>
+        <li role="button" tabindex="0" class="active-nav">
+          <i class="bi bi-columns-gap"></i>Dashboard
+        </li>
+        <li role="button" tabindex="0">
+          <i class="bi bi-person-circle"></i>Overview
+        </li>
+        <li role="button" tabindex="0"><i class="bi bi-broadcast"></i>Radio</li>
+        <li role="button" tabindex="0">
+          <i class="bi bi-chat-square-text"></i>Messages
+        </li>
+        <li role="button" tabindex="0">
+          <i class="bi bi-music-note-beamed"></i>My Music
+        </li>
+        <li role="button" tabindex="0"><i class="bi bi-heart"></i>Favorites</li>
+        <li role="button" tabindex="0">
+          <i class="bi bi-question-circle"></i>Help
+        </li>
       </ul>
 
       <div class="prefer-color">
-        <p><i class="bi bi-brightness-high"></i>Light Mode</p>
+        <button class="color_btn">
+          <i class="bi bi-brightness-high"></i>Dark Mode
+        </button>
       </div>
     </nav>
+
+    <!-- MIDDLE -->
     <section class="middle-area light">
       <div class="search-song">
         <input type="text" name="search-bar" id="search" placeholder="Search" />
-        <i class="bi bi-search"></i>
+        <button><i class="bi bi-search"></i></button>
       </div>
       <div class="subscribe">
         <div>
@@ -55,14 +69,14 @@
           <h2>Playlists</h2>
           <button>More</button>
         </div>
-        <div class="playlist">
-          <div class="set-playlist">
+        <div role="button" tabindex="0" class="playlist">
+          <div role="button" tabindex="0" class="set-playlist">
             <i class="bi bi-plus-circle"></i>
             <div class="artist-info">
               <p>Add Playlist</p>
             </div>
           </div>
-          <div class="set-playlist">
+          <div role="button" tabindex="0" class="set-playlist">
             <img src="Images/Rectangle 48.png" alt="song-cover-picture" />
             <i class="bi bi-play-circle"></i>
             <div class="artist-info">
@@ -72,7 +86,7 @@
               </p>
             </div>
           </div>
-          <div class="set-playlist">
+          <div role="button" tabindex="0" class="set-playlist">
             <img src="Images/Rectangle 49.png" alt="song-cover-picture" />
             <i class="bi bi-play-circle"></i>
             <div class="artist-info">
@@ -82,7 +96,7 @@
               </p>
             </div>
           </div>
-          <div class="set-playlist">
+          <div role="button" tabindex="0" class="set-playlist">
             <img src="Images/Rectangle 50.png" alt="song-cover-picture" />
             <i class="bi bi-play-circle"></i>
             <div class="artist-info">
@@ -103,7 +117,12 @@
       <div class="user-info">
         <h2>Welcome, <span>thetimileyin!</span></h2>
         <button><i class="bi bi-bell"></i></button>
-        <img src="Images/unsplash_rriAI0nhcbc.svg" alt="profile-picture" />
+        <img
+          role="button"
+          tabindex="0"
+          src="Images/unsplash_rriAI0nhcbc.svg"
+          alt="profile-picture"
+        />
         <button><i class="bi bi-chevron-down"></i></button>
       </div>
       <div>
@@ -112,7 +131,7 @@
           <button>More</button>
         </div>
         <div class="genre-container">
-          <div class="genre">
+          <div role="button" tabindex="0" class="genre">
             <img
               name="genre1"
               src="Images/Rectangle 42.png"
@@ -121,7 +140,7 @@
             <i class="bi bi-play-circle"></i>
             <label for="genre1">Afrobeats</label>
           </div>
-          <div class="genre">
+          <div role="button" tabindex="0" class="genre">
             <img
               name="genre2"
               src="Images/Rectangle 42 (1).png"
@@ -130,7 +149,7 @@
             <i class="bi bi-play-circle"></i>
             <label for="genre2">Gospel</label>
           </div>
-          <div class="genre">
+          <div role="button" tabindex="0" class="genre">
             <img
               name="genre3"
               src="Images/Rectangle 42 (2).png"
@@ -147,7 +166,7 @@
           <button>More</button>
         </div>
         <div class="trending-songs">
-          <div class="music-item">
+          <div role="button" tabindex="0" class="music-item">
             <img src="Images/Trending/Ellipse 10.png" alt="song cover image" />
             <div class="justify-playbtn">
               <p>
@@ -157,7 +176,7 @@
               <i class="bi bi-play-circle-fill"></i>
             </div>
           </div>
-          <div class="music-item">
+          <div role="button" tabindex="0" class="music-item">
             <img
               src="Images/Trending/Ellipse 10(1).png"
               alt="song cover image"
@@ -170,7 +189,7 @@
               <i class="bi bi-play-circle-fill"></i>
             </div>
           </div>
-          <div class="music-item">
+          <div role="button" tabindex="0" class="music-item">
             <img
               src="Images/Trending/Ellipse 10(2).png"
               alt="song cover image"
@@ -185,7 +204,7 @@
               <i class="bi bi-play-circle-fill"></i>
             </div>
           </div>
-          <div class="music-item">
+          <div role="button" tabindex="0" class="music-item">
             <img
               src="Images/Trending/Ellipse 10(3).png"
               alt="song cover image"
@@ -195,7 +214,7 @@
               <i class="bi bi-play-circle-fill"></i>
             </div>
           </div>
-          <div class="music-item">
+          <div role="button" tabindex="0" class="music-item">
             <img
               src="Images/Trending/Ellipse 10(4).png"
               alt="song cover image"
@@ -205,7 +224,7 @@
               <i class="bi bi-play-circle-fill"></i>
             </div>
           </div>
-          <div class="music-item">
+          <div role="button" tabindex="0" class="music-item">
             <img
               src="Images/Trending/Ellipse 10(1).png"
               alt="song cover image"

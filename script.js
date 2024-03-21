@@ -11,3 +11,15 @@ function selectNavOption() {
     });
   }
 }
+
+const lightModeElement = document.querySelectorAll(".light");
+const colorModeButton = document.querySelector(".color_btn");
+
+colorModeButton.addEventListener("click", () => {
+  lightModeElement.forEach((element) => {
+    element.classList.toggle("light");
+  });
+  colorModeButton.textContent === "Light Mode"
+    ? (colorModeButton.textContent = "Dark Mode")
+    : (colorModeButton.textContent = "Light Mode");
+});

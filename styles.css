@@ -134,12 +134,20 @@ nav {
 }
 .prefer-color {
   margin-top: 300px;
+  text-align: center;
+}
+.prefer-color button {
+  border: none;
+  background: none;
+  color: inherit;
+  cursor: pointer;
 }
 
 /* NAV LIGHT MODE */
 nav.light {
   background-color: var(--clr-secondary-purple);
   color: white;
+  transition: 0.5s linear;
 }
 nav.light ul .active-nav {
   background-color: var(--clr-bg-lightmode-ash);
@@ -168,6 +176,11 @@ section .search-song {
   padding: 12px 20px;
   border-radius: 25px;
   display: flex;
+}
+.middle-area .search-song button {
+  border: none;
+  background: none;
+  cursor: pointer;
 }
 section .search-song .bi {
   color: var(--clr-primary-white);
@@ -215,6 +228,10 @@ section .subscribe button {
   padding: 13px 76px;
   border-radius: 25px;
   cursor: pointer;
+  transition: 0.3s linear;
+}
+section .subscribe button:hover {
+  background-color: #cc00ff;
 }
 
 .heading-flex {
@@ -258,7 +275,7 @@ section .subscribe button {
 
 .playlist .set-playlist {
   width: 158px;
-  height: 205px;
+  height: 224px;
   border-radius: 10px;
   padding-bottom: 10px;
   overflow: hidden;
@@ -266,10 +283,15 @@ section .subscribe button {
   text-align: center;
   position: relative;
   cursor: pointer;
+  transition: 0.5s linear;
+}
+.playlist .set-playlist:hover {
+  background-color: hsl(0, 1%, 20%);
 }
 .playlist .set-playlist .bi-play-circle {
   position: absolute;
-  top: 20%;
+  top: 15%;
+  right: 42%;
   font-size: 25px;
   color: var(--clr-text-white);
   opacity: 0;
@@ -285,7 +307,7 @@ section .subscribe button {
   top: 0;
 }
 .artist-info {
-  margin-top: 130px;
+  margin: 130px 10px 0 10px;
   font-weight: 500;
   font-size: 14px;
 }
@@ -306,6 +328,13 @@ section.light,
 .middle-area.light {
   background-color: var(--clr-bg-lightmode-ash);
   color: var(--clr-text-black);
+  transition: 0.5s linear;
+}
+section.light .search-song .bi {
+  color: var(--clr-bg-nav-ash);
+}
+.middle-area.light .heading-flex h2 {
+  color: var(--clr-text-black);
 }
 .middle-area.light .search-song,
 .middle-area.light .subscribe,
@@ -316,7 +345,9 @@ section.light,
 .middle-area.light .set-playlist .artist-info p {
   color: var(--clr-text-black);
 }
-
+.middle-area.light .playlist .set-playlist:hover {
+  background-color: #2626263b;
+}
 /* RIGTH AREA */
 .right-area {
   background-color: var(--clr-bg-black);
@@ -336,6 +367,9 @@ section.light,
   border: none;
   cursor: pointer;
   color: var(--clr-primary-white);
+}
+.user-info img {
+  cursor: pointer;
 }
 .genre-container {
   display: flex;
@@ -358,8 +392,8 @@ section.light,
 }
 .genre-container .genre .bi-play-circle {
   position: absolute;
-  top: 30%;
-  left: 40%;
+  top: 32%;
+  left: 42%;
   font-size: 25px;
   color: var(--clr-text-white);
   opacity: 0;
@@ -372,6 +406,7 @@ section.light,
   display: flex;
   flex-direction: column;
   background-color: var(--clr-bg-nav-ash);
+  border-radius: 10px;
   gap: 25px;
   padding: 25px 20px;
 }
@@ -388,8 +423,7 @@ section.light,
 }
 .right-area .trending-songs .music-item:hover {
   background-color: hsl(0, 0%, 24%);
-  border-top-left-radius: 40px;
-  border-bottom-left-radius: 40px;
+  border-radius: 40px;
 }
 .right-area .trending-songs .music-item p {
   display: flex;
@@ -410,11 +444,15 @@ section.light,
   fill: var(--clr-secondary-purple);
   font-size: 30px;
   right: 0;
+  margin-right: 10px;
 }
 /* RIGHT AREA LIGHT MODE */
 .right-area.light {
   background-color: var(--clr-bg-lightmode-ash);
   color: var(--clr-text-black);
+}
+.right-area.light .user-info button {
+  color: var(--clr-bg-nav-ash);
 }
 .right-area.light .heading-flex h2,
 .right-area.light .genre-container {
