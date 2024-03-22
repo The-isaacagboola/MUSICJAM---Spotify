@@ -1,6 +1,6 @@
-import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
-
-const today = dayjs();
+if (!window.location.search) {
+  getAuthorization();
+}
 
 selectNavOption();
 function selectNavOption() {
@@ -98,9 +98,6 @@ document.getElementById("connect").addEventListener("click", () => {
 const urlParams = new URLSearchParams(window.location.search);
 let code = urlParams.get("code");
 
-// console.log(urlParams);
-// console.log(code);
-
 // We then get an Access Token
 async function getToken(code) {
   // stored in the previous step
@@ -127,6 +124,45 @@ async function getToken(code) {
   localStorage.setItem("access_token", response.access_token);
   localStorage.setItem("refresh_token", response.refresh_token);
 }
-
 getToken(code);
-// console.log(localStorage.getItem("access_token"));    works!!!
+
+// REFRESH TOKEN
+const getRefreshToken = async () => {
+  // refresh token that has been previously stored
+  const refreshToken = localStorage.getItem("refresh_token");
+  const url = "https://accounts.spotify.com/api/token";
+
+  const payload = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: new URLSearchParams({
+      grant_type: "refresh_token",
+      refresh_token: refreshToken,
+      client_id: clientID,
+    }),
+  };
+  const resBody = await fetch(url, payload);
+  const response = await resBody.json();
+
+  console.log(response);
+  localStorage.setItem("access_token", response.access_token);
+  localStorage.setItem("refresh_token", response.refresh_token);
+};
+
+document.querySelector(".notify-bell").addEventListener("click", () => {
+  fetchProfile(localStorage.getItem("access_token"));
+});
+
+// LOAD USER DATA
+async function fetchProfile(token) {
+  const result = await fetch("https://api.spotify.com/v1/me", {
+    method: "GET",
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  const info = await result.json();
+  console.log(info);
+}
+
+function populateUI() {}
