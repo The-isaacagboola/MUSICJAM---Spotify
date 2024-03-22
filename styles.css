@@ -447,7 +447,7 @@ section .subscribe button:hover {
   height: 12px;
 }
 #player_interface .masterPlay .wave span:nth-child(4) {
-  height: 22px;
+  height: 8px;
 }
 /* js class active-wave */
 #player_interface .masterPlay .active-wave span {
@@ -460,6 +460,10 @@ section .subscribe button:hover {
 #player_interface .masterPlay .active-wave span:nth-child(3) {
   height: 12px;
   animation-delay: 0.3s;
+}
+#player_interface .masterPlay .active-wave span:nth-child(4) {
+  height: 8px;
+  animation-delay: 0.1s;
 }
 
 @keyframes wave {
