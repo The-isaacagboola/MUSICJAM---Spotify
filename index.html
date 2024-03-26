@@ -66,14 +66,44 @@
 
       <div>
         <div class="heading-flex">
-          <h2>Playlists</h2>
+          <h2>Top Tracks</h2>
           <button>More</button>
         </div>
-        <div role="button" tabindex="0" class="playlist">
+        <div role="button" tabindex="0" class="playlist js-playlist">
           <div role="button" tabindex="0" class="set-playlist">
             <i class="bi bi-plus-circle"></i>
             <div class="artist-info">
               <p>Add Playlist</p>
+            </div>
+          </div>
+          <div role="button" tabindex="0" class="set-playlist">
+            <img src="Images/Rectangle 48.png" alt="song-cover-picture" />
+            <i class="bi bi-play-circle"></i>
+            <div class="artist-info">
+              <p>Worship</p>
+              <p class="grey-text">
+                by <span class="song-writer">Elevation Worship</span>
+              </p>
+            </div>
+          </div>
+          <div role="button" tabindex="0" class="set-playlist">
+            <img src="Images/Rectangle 49.png" alt="song-cover-picture" />
+            <i class="bi bi-play-circle"></i>
+            <div class="artist-info">
+              <p>Tasha Cobbs Songs</p>
+              <p class="grey-text">
+                by <span class="song-writer">Tasha Cobbs Leonard</span>
+              </p>
+            </div>
+          </div>
+          <div role="button" tabindex="0" class="set-playlist">
+            <img src="Images/Rectangle 50.png" alt="song-cover-picture" />
+            <i class="bi bi-play-circle"></i>
+            <div class="artist-info">
+              <p>Prayer</p>
+              <p class="grey-text">
+                by <span class="song-writer">Maverick City</span>
+              </p>
             </div>
           </div>
           <div role="button" tabindex="0" class="set-playlist">
@@ -176,12 +206,27 @@
       <div class="user-info">
         <h2>Welcome, <span class="user-name">thetimileyin!</span></h2>
         <button class="notify-bell"><i class="bi bi-bell"> </i></button>
-        <img
-          role="button"
-          tabindex="0"
-          src="Images/unsplash_rriAI0nhcbc.svg"
-          alt="profile-picture"
-        />
+        <div class="dropdown" data-dropdown>
+          <img
+            class="display-picture"
+            data-dropdown-button
+            role="button"
+            tabindex="0"
+            src="Images/unsplash_rriAI0nhcbc.svg"
+            alt="profile-picture"
+          />
+          <div class="dropdown-menu">
+            <h2>User Info</h2>
+            <ul>
+              <li>Spotify Id : <span class="info-id"></span></li>
+              <li>Display Name : <span class="info-name"></span></li>
+              <li>Country : <span class="info-country"></span></li>
+              <li>Email : <span class="info-email"></span></li>
+              <li>Spotify Link : <span class="info-spotifyLink"></span></li>
+            </ul>
+            <button>Log Out</button>
+          </div>
+        </div>
         <button><i class="bi bi-chevron-down"></i></button>
       </div>
       <div>
@@ -190,6 +235,33 @@
           <button>More</button>
         </div>
         <div class="genre-container">
+          <div role="button" tabindex="0" class="genre">
+            <img
+              name="genre1"
+              src="Images/Rectangle 42.png"
+              alt="genre-cover-picture"
+            />
+            <i class="bi bi-play-circle"></i>
+            <label for="genre1">Afrobeats</label>
+          </div>
+          <div role="button" tabindex="0" class="genre">
+            <img
+              name="genre2"
+              src="Images/Rectangle 42 (1).png"
+              alt="genre-cover-picture"
+            />
+            <i class="bi bi-play-circle"></i>
+            <label for="genre2">Gospel</label>
+          </div>
+          <div role="button" tabindex="0" class="genre">
+            <img
+              name="genre3"
+              src="Images/Rectangle 42 (2).png"
+              alt="genre-cover-picture"
+            />
+            <i class="bi bi-play-circle"></i>
+            <label for="genre3">Pop</label>
+          </div>
           <div role="button" tabindex="0" class="genre">
             <img
               name="genre1"

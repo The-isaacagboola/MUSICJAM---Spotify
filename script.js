@@ -1,7 +1,3 @@
-if (!window.location.search) {
-  getAuthorization();
-}
-
 selectNavOption();
 function selectNavOption() {
   const navItems = document.getElementById("nav").querySelector("ul").children;
@@ -26,6 +22,26 @@ colorModeButton.addEventListener("click", () => {
   colorModeButton.textContent === "Light Mode"
     ? (colorModeButton.innerHTML = `<i class="bi bi-brightness-high">Dark Mode</i>`)
     : (colorModeButton.innerHTML = `<i class="bi bi-brightness-high">Light Mode</i>`);
+});
+
+// DROPDOWN BUTTONS
+
+document.addEventListener("click", (e) => {
+  const isDropdownButton = e.target.matches("[data-dropdown-button]");
+  if (!isDropdownButton && e.target.closest("[data-dropdown]") != null) return;
+
+  let currentDropdown;
+  if (isDropdownButton) {
+    currentDropdown = e.target.closest("[data-dropdown]");
+    currentDropdown.classList.toggle("active-dropdown");
+  }
+
+  document
+    .querySelectorAll("[data-dropdown].active-dropdown")
+    .forEach((dropdown) => {
+      if (dropdown === currentDropdown) return;
+      else dropdown.classList.remove("active-dropdown");
+    });
 });
 
 // SPOTIFY API
@@ -90,7 +106,6 @@ async function getAuthorization() {
 }
 
 // INVOKE SPOTIFY REDIRECTION
-
 document.getElementById("connect").addEventListener("click", () => {
   getAuthorization();
 });
@@ -99,6 +114,13 @@ const urlParams = new URLSearchParams(window.location.search);
 let code = urlParams.get("code");
 
 // We then get an Access Token
+if (
+  !localStorage.getItem("access_token") ||
+  !localStorage.getItem("expires_in") ||
+  new Date().getTime() > Number(localStorage.getItem("expires_in"))
+) {
+  await getToken(code);
+}
 async function getToken(code) {
   // stored in the previous step
   let codeVerifier = localStorage.getItem("code_verifier");
@@ -123,8 +145,8 @@ async function getToken(code) {
 
   localStorage.setItem("access_token", response.access_token);
   localStorage.setItem("refresh_token", response.refresh_token);
+  getDateAddExpiry();
 }
-getToken(code);
 
 // REFRESH TOKEN
 const getRefreshToken = async () => {
@@ -149,20 +171,114 @@ const getRefreshToken = async () => {
   console.log(response);
   localStorage.setItem("access_token", response.access_token);
   localStorage.setItem("refresh_token", response.refresh_token);
+  getDateAddExpiry();
 };
 
+function getDateAddExpiry() {
+  let now = new Date().getTime();
+  const oneHour = new Date(now + 3600 * 1000);
+  localStorage.setItem("expires_in", oneHour.getTime());
+}
+
 document.querySelector(".notify-bell").addEventListener("click", () => {
-  fetchProfile(localStorage.getItem("access_token"));
+  loadUserData(localStorage.getItem("access_token"));
 });
 
 // LOAD USER DATA
-async function fetchProfile(token) {
-  const result = await fetch("https://api.spotify.com/v1/me", {
-    method: "GET",
-    headers: { Authorization: `Bearer ${token}` },
-  });
-  const info = await result.json();
-  console.log(info);
+async function loadUserData(token) {
+  async function fetchProfile() {
+    const result = await fetch("https://api.spotify.com/v1/me", {
+      method: "GET",
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const userinfo = await result.json();
+    return userinfo;
+  }
+
+  const userInfo = await fetchProfile(localStorage.getItem("access_token"));
+  console.log(userInfo);
+
+  function populateUI() {
+    const DomElements = {
+      username: document.querySelector(".user-name"),
+      id: document.querySelector(".info-id"),
+      name: document.querySelector(".info-name"),
+      country: document.querySelector(".info-country"),
+      email: document.querySelector(".info-email"),
+      spotifyLink: document.querySelector(".info-spotifyLink"),
+    };
+
+    DomElements.username.innerHTML = userInfo.display_name;
+    DomElements.id.innerHTML = userInfo.id;
+    DomElements.name.innerHTML = userInfo.display_name;
+    DomElements.country.innerHTML = userInfo.country;
+    DomElements.email.innerHTML = userInfo.email;
+    DomElements.spotifyLink.innerHTML = `<a>${userInfo.external_urls.spotify}</a>`;
+  }
+  populateUI();
 }
 
-function populateUI() {}
+// SEARCH FOR SONGS
+const searchBox = document.querySelector("#search");
+async function searchSong(accTok) {
+  const result = await fetch("https://api.spotify.com/v1/search", {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${accTok}`,
+      q: searchBox.value,
+      type: "track",
+      limit: 10,
+      include_external: "audio",
+    },
+  });
+  const userinfo = await result.json();
+  console.log(userinfo);
+}
+
+searchBox.addEventListener("input", () => {
+  searchSong(localStorage.getItem("access_token"));
+});
+
+// GET TOP TRACKS
+
+async function fetchWebApi(endpoint, method, body) {
+  const res = await fetch(`https://api.spotify.com/${endpoint}`, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+    },
+    method,
+    body: JSON.stringify(body),
+  });
+  return await res.json();
+}
+
+async function getTopTracks() {
+  // Endpoint reference : https://developer.spotify.com/documentation/web-api/reference/get-users-top-artists-and-tracks
+  return (
+    await fetchWebApi("v1/me/top/tracks?time_range=long_term&limit=5", "GET")
+  ).items;
+}
+
+const topTracks = await getTopTracks();
+
+let itemsToDisplay = "";
+topTracks.forEach((track) => {
+  const smallestImage = track.album.images.reduce((smallest, image) => {
+    if (image.height < smallest.height) return image;
+    return smallest;
+  }, track.album.images[0]);
+
+  console.log(smallestImage);
+  let html = `<div role="button" tabindex="0" class="set-playlist" data-trackId=${track.id}>
+  <img src="${track.album.images[0].url}" alt="song-cover-picture" />
+  <i class="bi bi-play-circle"></i>
+  <div class="artist-info" >
+    <p>${track.name}</p>
+    <p class="grey-text">
+      by <span class="song-writer">${track.artists[0].name}</span>
+    </p>
+  </div>
+  </div>`;
+  itemsToDisplay += html;
+  document.querySelector(".js-playlist").innerHTML = itemsToDisplay;
+});
