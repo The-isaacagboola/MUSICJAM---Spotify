@@ -220,25 +220,40 @@ async function loadUserData(token) {
 
 // SEARCH FOR SONGS
 const searchBox = document.querySelector("#search");
+
+const baseUrl = "https://api.spotify.com/v1/search";
 async function searchSong(accTok) {
-  const result = await fetch("https://api.spotify.com/v1/search", {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${accTok}`,
-      q: searchBox.value,
-      type: "track",
-      limit: 10,
-      include_external: "audio",
-    },
+  const params = {
+    q: `${searchBox.value}`,
+    type: "track",
+    limit: 10,
+    include_external: "audio",
+  };
+
+  const url = new URL(baseUrl);
+  Object.keys(params).forEach((key) => {
+    url.searchParams.append(key, params[key]);
   });
-  const userinfo = await result.json();
-  console.log(userinfo);
+
+  const headers = new Headers();
+  headers.append("Content-Type", "application/json");
+  headers.append("Authorization", `Bearer ${accTok}`);
+
+  const res = await fetch(url, {
+    method: "GET",
+    headers: headers,
+  });
+  const responseObj = await res.json();
+  renderSearchResult(responseObj);
 }
 
 searchBox.addEventListener("input", () => {
   searchSong(localStorage.getItem("access_token"));
 });
 
+function renderSearchResult(object) {
+  const displayField = document.getElementById("search-resultField");
+}
 // GET TOP TRACKS
 
 async function fetchWebApi(endpoint, method, body) {
@@ -268,7 +283,6 @@ topTracks.forEach((track) => {
     return smallest;
   }, track.album.images[0]);
 
-  console.log(smallestImage);
   let html = `<div role="button" tabindex="0" class="set-playlist" data-trackId=${track.id}>
   <img src="${track.album.images[0].url}" alt="song-cover-picture" />
   <i class="bi bi-play-circle"></i>
@@ -279,6 +293,16 @@ topTracks.forEach((track) => {
     </p>
   </div>
   </div>`;
-  itemsToDisplay += html;
-  document.querySelector(".js-playlist").innerHTML = itemsToDisplay;
+
+  // itemsToDisplay += html;
+  document.querySelector(".js-playlist").insertAdjacentHTML("beforeend", html);
+});
+
+document.addEventListener("click", (e) => {
+  if (e.target.closest(".genre") != null) {
+    console.log("genre clicked");
+  } else if (e.target.closest(".set-playlist") != null) {
+    console.log("song to pplay is already");
+    console.log(e.target.closest(".set-playlist").dataset);
+  }
 });

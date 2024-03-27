@@ -203,6 +203,35 @@ section .search-song input {
   font-size: 18px;
   width: 100%;
 }
+.middle-area #search-resultField {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+.middle-area #search-resultField .search-item {
+  display: flex;
+  margin-bottom: 10px;
+  gap: 20px;
+  align-items: center;
+  font-family: var(--font-poppins);
+}
+.middle-area #search-resultField .search-item img {
+  width: 80px;
+  height: 80px;
+}
+.middle-area #search-resultField .search-item .search-item-info h3 {
+  font-weight: 500;
+}
+.middle-area #search-resultField .search-item .search-item-info span {
+  color: var(--clr-secondary-ash);
+}
+.middle-area.light #search-resultField {
+  color: var(--clr-text-black);
+}
+.middle-area #search-resultField {
+  color: var(--clr-bg-lightmode-ash);
+}
+
 section .subscribe {
   display: flex;
   justify-content: space-between;
@@ -284,7 +313,7 @@ section .subscribe button:hover {
 
 .playlist .set-playlist {
   width: 158px;
-  height: 224px;
+  /* height: 224px; */
   border-radius: 10px;
   padding-bottom: 10px;
   overflow: hidden;
@@ -317,7 +346,7 @@ section .subscribe button:hover {
   top: 0;
 }
 .artist-info {
-  margin: 140px 10px 0 10px;
+  margin: 160px 10px 10px 10px;
   font-weight: 500;
   font-size: 14px;
   z-index: 3;
@@ -591,14 +620,13 @@ section.light .search-song .bi {
   display: none;
 }
 .right-area .genre-container .genre img {
-  width: 160px;
+  min-width: 160px;
   height: 120px;
   margin-bottom: 10px;
 }
 .right-area .genre-container .genre {
   position: relative;
   cursor: pointer;
-  width: 300px !important;
 }
 .genre-container .genre .bi-play-circle {
   position: absolute;
