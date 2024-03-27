@@ -49,32 +49,15 @@
     <!-- MIDDLE -->
     <section class="middle-area light">
       <div class="search-song">
-        <input type="text" name="search-bar" id="search" placeholder="Search" />
+        <input
+          type="text"
+          name="search-bar"
+          id="search"
+          placeholder="Search Song / Artist..."
+        />
         <button><i class="bi bi-search"></i></button>
       </div>
-      <div id="search-resultField">
-        <div class="search-item">
-          <img src="Images/Rectangle 42 (1).png" />
-          <div class="search-item-info">
-            <h3>Music Title</h3>
-            <span>Artist</span>
-          </div>
-        </div>
-        <div class="search-item">
-          <img src="Images/Rectangle 42 (1).png" />
-          <div class="search-item-info">
-            <h3>Music Title</h3>
-            <span>Artist</span>
-          </div>
-        </div>
-        <div class="search-item">
-          <img src="Images/Rectangle 42 (1).png" />
-          <div class="search-item-info">
-            <h3>Music Title</h3>
-            <span>Artist</span>
-          </div>
-        </div>
-      </div>
+      <div id="search-resultField"></div>
 
       <div class="subscribe">
         <div>
@@ -90,7 +73,7 @@
 
       <div>
         <div class="heading-flex">
-          <h2>Top Tracks</h2>
+          <h2>Playlist</h2>
           <button>More</button>
         </div>
         <div role="button" tabindex="0" class="playlist js-playlist">
@@ -100,36 +83,7 @@
               <p>Add Playlist</p>
             </div>
           </div>
-          <div role="button" tabindex="0" class="set-playlist">
-            <img src="Images/Rectangle 48.png" alt="song-cover-picture" />
-            <i class="bi bi-play-circle"></i>
-            <div class="artist-info">
-              <p>Worship</p>
-              <p class="grey-text">
-                by <span class="song-writer">Elevation Worship</span>
-              </p>
-            </div>
-          </div>
-          <div role="button" tabindex="0" class="set-playlist">
-            <img src="Images/Rectangle 49.png" alt="song-cover-picture" />
-            <i class="bi bi-play-circle"></i>
-            <div class="artist-info">
-              <p>Tasha Cobbs Songs</p>
-              <p class="grey-text">
-                by <span class="song-writer">Tasha Cobbs </span>
-              </p>
-            </div>
-          </div>
-          <div role="button" tabindex="0" class="set-playlist">
-            <img src="Images/Rectangle 50.png" alt="song-cover-picture" />
-            <i class="bi bi-play-circle"></i>
-            <div class="artist-info">
-              <p>Prayer</p>
-              <p class="grey-text">
-                by <span class="song-writer">Maverick City</span>
-              </p>
-            </div>
-          </div>
+
           <div role="button" tabindex="0" class="set-playlist">
             <img src="Images/Rectangle 48.png" alt="song-cover-picture" />
             <i class="bi bi-play-circle"></i>
@@ -340,41 +294,14 @@
             <i class="bi bi-play-circle"></i>
             <label for="genre3">Pop</label>
           </div>
-          <div role="button" tabindex="0" class="genre">
-            <img
-              name="genre1"
-              src="Images/Rectangle 42.png"
-              alt="genre-cover-picture"
-            />
-            <i class="bi bi-play-circle"></i>
-            <label for="genre1">Afrobeats</label>
-          </div>
-          <div role="button" tabindex="0" class="genre">
-            <img
-              name="genre2"
-              src="Images/Rectangle 42 (1).png"
-              alt="genre-cover-picture"
-            />
-            <i class="bi bi-play-circle"></i>
-            <label for="genre2">Gospel</label>
-          </div>
-          <div role="button" tabindex="0" class="genre">
-            <img
-              name="genre3"
-              src="Images/Rectangle 42 (2).png"
-              alt="genre-cover-picture"
-            />
-            <i class="bi bi-play-circle"></i>
-            <label for="genre3">Pop</label>
-          </div>
         </div>
       </div>
       <div>
         <div class="heading-flex">
-          <h2>Trending Today</h2>
+          <h2>Top Tracks</h2>
           <button>More</button>
         </div>
-        <div class="trending-songs">
+        <div class="trending-songs js-toptracks">
           <div role="button" tabindex="0" class="music-item">
             <img src="Images/Trending/Ellipse 10.png" alt="song cover image" />
             <div class="justify-playbtn">
@@ -446,7 +373,7 @@
         </div>
       </div>
     </section>
-
+    <script src="https://sdk.scdn.co/spotify-player.js"></script>
     <script src="script.js" type="module"></script>
   </body>
 </html>

@@ -199,7 +199,7 @@ section .search-song input {
   background-color: transparent;
   outline: none;
   border: none;
-  color: var(--clr-sec-sidebar-ash);
+  color: var(--clr-sec-premium-ash);
   font-size: 18px;
   width: 100%;
 }
@@ -214,10 +214,19 @@ section .search-song input {
   gap: 20px;
   align-items: center;
   font-family: var(--font-poppins);
+  cursor: pointer;
+  transition: 0.3s linear;
+}
+.middle-area.light #search-resultField .search-item:hover {
+  background-color: #2626263b;
+}
+.middle-area #search-resultField .search-item:hover {
+  background-color: var(--clr-bg-nav-ash);
 }
 .middle-area #search-resultField .search-item img {
   width: 80px;
   height: 80px;
+  object-fit: cover;
 }
 .middle-area #search-resultField .search-item .search-item-info h3 {
   font-weight: 500;

@@ -180,10 +180,6 @@ function getDateAddExpiry() {
   localStorage.setItem("expires_in", oneHour.getTime());
 }
 
-document.querySelector(".notify-bell").addEventListener("click", () => {
-  loadUserData(localStorage.getItem("access_token"));
-});
-
 // LOAD USER DATA
 async function loadUserData(token) {
   async function fetchProfile() {
@@ -196,7 +192,6 @@ async function loadUserData(token) {
   }
 
   const userInfo = await fetchProfile(localStorage.getItem("access_token"));
-  console.log(userInfo);
 
   function populateUI() {
     const DomElements = {
@@ -217,7 +212,7 @@ async function loadUserData(token) {
   }
   populateUI();
 }
-
+loadUserData(localStorage.getItem("access_token"));
 // SEARCH FOR SONGS
 const searchBox = document.querySelector("#search");
 
@@ -251,8 +246,26 @@ searchBox.addEventListener("input", () => {
   searchSong(localStorage.getItem("access_token"));
 });
 
+const searchDisplayField = document.getElementById("search-resultField");
 function renderSearchResult(object) {
-  const displayField = document.getElementById("search-resultField");
+  let searchAccumulator = "";
+  const songObject = object.tracks.items;
+  songObject.forEach((obj) => {
+    const smallestImage = obj.album.images.reduce((smallest, image) => {
+      if (image.width < smallest.width) return image;
+      return smallest;
+    }, obj.album.images[0]);
+
+    let html = `<div class="search-item" data-songId=${obj.id}>
+    <img src="${smallestImage.url}" />
+    <div class="search-item-info">
+      <h3>${obj.name}</h3>
+      <span>${obj.album.artists[0].name}</span>
+    </div>
+  </div>`;
+    searchAccumulator += html;
+  });
+  searchDisplayField.innerHTML = searchAccumulator;
 }
 // GET TOP TRACKS
 
@@ -270,32 +283,30 @@ async function fetchWebApi(endpoint, method, body) {
 async function getTopTracks() {
   // Endpoint reference : https://developer.spotify.com/documentation/web-api/reference/get-users-top-artists-and-tracks
   return (
-    await fetchWebApi("v1/me/top/tracks?time_range=long_term&limit=5", "GET")
+    await fetchWebApi("v1/me/top/tracks?time_range=long_term&limit=6", "GET")
   ).items;
 }
 
 const topTracks = await getTopTracks();
-
-let itemsToDisplay = "";
+let tracksHTML = "";
 topTracks.forEach((track) => {
   const smallestImage = track.album.images.reduce((smallest, image) => {
     if (image.height < smallest.height) return image;
     return smallest;
   }, track.album.images[0]);
 
-  let html = `<div role="button" tabindex="0" class="set-playlist" data-trackId=${track.id}>
-  <img src="${track.album.images[0].url}" alt="song-cover-picture" />
-  <i class="bi bi-play-circle"></i>
-  <div class="artist-info" >
-    <p>${track.name}</p>
-    <p class="grey-text">
-      by <span class="song-writer">${track.artists[0].name}</span>
-    </p>
-  </div>
-  </div>`;
-
-  // itemsToDisplay += html;
-  document.querySelector(".js-playlist").insertAdjacentHTML("beforeend", html);
+  let html = `<div role="button" tabindex="0" class="music-item" data-trackId=${track.id}>
+            <img src="${track.album.images[0].url}" alt="song cover image" />
+            <div class="justify-playbtn">
+              <p>
+              ${track.name}
+                <span class="artist-name">${track.artists[0].name}</span>
+              </p>
+              <i class="bi bi-play-circle-fill"></i>
+            </div>
+          </div>`;
+  tracksHTML += html;
+  document.querySelector(".js-toptracks").innerHTML = tracksHTML;
 });
 
 document.addEventListener("click", (e) => {
@@ -304,5 +315,45 @@ document.addEventListener("click", (e) => {
   } else if (e.target.closest(".set-playlist") != null) {
     console.log("song to pplay is already");
     console.log(e.target.closest(".set-playlist").dataset);
+  } else if (e.target.closest(".music-item")) {
+    const trackId = e.target.closest(".music-item").dataset.trackid;
+    streamSong(trackId);
+    // player.togglePlay();
   }
 });
+
+window.onSpotifyWebPlaybackSDKReady = () => {
+  const token = "";
+  console.log(token);
+  const player = new Spotify.Player({
+    name: "Web Playback SDK Quick Start Player",
+    getOAuthToken: (cb) => {
+      cb(token);
+    },
+    volume: 0.5,
+  });
+
+  // Ready
+  player.addListener("ready", ({ device_id }) => {
+    console.log("Ready with Device ID", device_id);
+  });
+
+  // Not Ready
+  player.addListener("not_ready", ({ device_id }) => {
+    console.log("Device ID has gone offline", device_id);
+  });
+
+  player.addListener("initialization_error", ({ message }) => {
+    console.error(message);
+  });
+
+  player.addListener("authentication_error", ({ message }) => {
+    console.error(message);
+  });
+
+  player.addListener("account_error", ({ message }) => {
+    console.error(message);
+  });
+  player.connect();
+};
+function streamSong(trackId) {}
